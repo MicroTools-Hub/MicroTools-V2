@@ -561,6 +561,34 @@
             font-size: 1.1rem;
         }
 
+        /* Content-first intro strip that gives Auto Ads natural room */
+        .home-intro-panel {
+            margin: 1.5rem 0 2rem;
+            padding: 1.25rem 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            background: var(--bg-card);
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .home-intro-panel h2 {
+            font-size: 1.1rem;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .home-intro-panel ul {
+            margin: 0;
+            padding-left: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .home-intro-panel li {
+            margin-bottom: 0.35rem;
+        }
+
         /* Category Filter */
         .category-filter {
             display: flex;
@@ -594,7 +622,7 @@
             gap: 1.5rem;
         }
 
-        .tool-card-preview {
+        .tool-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
@@ -606,13 +634,13 @@
             gap: 1rem;
         }
 
-        .tool-card-preview:hover {
+        .tool-card:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow);
             border-color: var(--accent-primary);
         }
 
-        .tool-card-preview .tool-icon {
+        .tool-card .tool-icon {
             width: 56px;
             height: 56px;
             border-radius: 14px;
@@ -624,12 +652,12 @@
             color: white;
         }
 
-        .tool-card-preview h3 {
+        .tool-card h3 {
             font-size: 1.15rem;
             color: var(--text-primary);
         }
 
-        .tool-card-preview p {
+        .tool-card p {
             color: var(--text-secondary);
             font-size: 0.9rem;
             line-height: 1.5;
@@ -641,7 +669,7 @@
             text-overflow: ellipsis;
         }
 
-        .tool-card-preview .tool-category {
+        .tool-card .tool-category {
             font-size: 0.75rem;
             color: var(--accent-primary);
             text-transform: uppercase;
@@ -698,12 +726,11 @@
             justify-content: center;
             font-size: 2rem;
             color: white;
-            margin: 0 auto 1.5rem !important;
-            margin-top: 0 !important;
+            margin: 1.5rem auto 0 !important;
             padding: 0 !important;
         }
 
-        .tool-header h2 {
+        .tool-header h1 {
             font-size: 2.5rem;
             margin: 0 0 1rem 0 !important;
             font-weight: 700;
@@ -1242,6 +1269,15 @@
                 <p>20+ powerful utilities that run entirely in your browser</p>
             </div>
 
+            <section class="home-intro-panel" aria-label="Highlights and tips">
+                <h2>Quick picks</h2>
+                <ul>
+                    <li>Most used this week: Word Counter, Password Generator, Gradient Creator.</li>
+                    <li>Fast tip: tools run in-browser only; your input stays on your device.</li>
+                    <li>Need a shareable result? Copy buttons are on every output box.</li>
+                </ul>
+            </section>
+
             <div class="category-filter">
                 <button class="filter-btn active" data-filter="all">All Tools</button>
                 <button class="filter-btn" data-filter="text">Text</button>
@@ -1704,7 +1740,7 @@
             
             filteredTools.forEach(tool => {
                 const card = document.createElement('div');
-                card.className = 'tool-card-preview';
+                card.className = 'tool-card';
                 card.onclick = () => showTool(tool.id);
                 card.innerHTML = `
                     <div class="tool-icon"><i class="fas ${tool.icon}"></i></div>
@@ -1740,9 +1776,9 @@
             
             let html = `
                 <div class="tool-header" style="margin-top:0!important;padding-top:0!important;">
-                    <div class="tool-icon" style="margin-top:0!important;"><i class="fas ${tool.icon}"></i></div>
-                    <h2>${tool.name}</h2>
+                    <h1>${tool.name}</h1>
                     <p>${tool.desc}</p>
+                    <div class="tool-icon"><i class="fas ${tool.icon}"></i></div>
                 </div>
                 <div class="tool-content">
             `;
